@@ -22,7 +22,7 @@
         <div>
             {{ $hello }},
             <p>{{ $text }}</p>
-            <p>{{ $end }}</p>
+            <p>{{ $bye }}</p>
         </div>
     </body>
 

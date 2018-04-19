@@ -12,26 +12,11 @@
 */
 
 // Home Page 
-Route::any('/', function () 
-{
-    // Red Pick 
-    $hexaReds = [];
-    $red1 = rand(150, 230);
-    $red2 = rand(1, 20);
-    $redGlove = 'rgb('. $red1 .','. $red2 .','. $red2 .')';
-
-    // Get Emails
-    $emails = ['birdperson@mail.com', 'mangakaperson@mail.com'];
-
-    // Send Mail
-
-    
-    return view('home', ['bgcolor' => $redGlove]);
-});
+Route::any('/', 'HomeController@index')->name('redglove');
 
 // Redirect All Other Routes to the Home Page 
 Route::any('/{any}', function ($any) 
 {
-
+    
 	return redirect('/');
 })->where('any', '.*');

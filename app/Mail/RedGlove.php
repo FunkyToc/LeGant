@@ -19,13 +19,21 @@ class RedGlove extends Mailable
     protected $text;
 
     /**
+     * The bgcolor string.
+     *
+     * @var bgcolor
+     */
+    protected $bgcolor;
+
+    /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($text, $bgcolor)
     {
-        //
+        $this->text = $text;
+        $this->bgcolor = $bgcolor;
     }
 
     /**
@@ -35,10 +43,16 @@ class RedGlove extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.RedGlove_html')->text('emails.RedGlove_text')->with([
-            'hello' => $this->text->hello,
-            'text' => $this->text->text,
-            'end' => $this->text->end
-        ]);
+        return $this
+            ->from(env('MAILGUN_FROM', 'redglove@gmail.com'))
+            ->view('emails.RedGlove_html')
+            ->text('emails.RedGlove_text')
+            ->with([
+                'bgcolor' => $this->bgcolor,
+                'hello' => $this->text['hello'],
+                'text' => $this->text['text'],
+                'bye' => $this->text['bye']
+            ]
+        );
     }
 }

@@ -54,7 +54,7 @@
     </head>
 
     <body>
-        <a href="#">
+        <a href="{{ route('redglove') }}">
             <div class="full-page">
                 <div class="">
                     <div class="title top-left">

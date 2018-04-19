@@ -43,9 +43,10 @@ return [
     */
 
     'mailgun' => [
+        'from' => env('MAILGUN_FROM', 'valid.email@gmail.com'),
         'domain' => env('MAILGUN_DOMAIN', 'your-mailgun-domain'),
-        'secret' => env('MAILGUN_PUBLIC_KEY', 'your-mailgun-public-key'),
-        'secret' => env('MAILGUN_PRIVATE_KEY', 'your-mailgun-private-key')
+        'secret' => env('MAILGUN_PRIVATE_KEY', 'your-mailgun-private-key'),
+        'public' => env('MAILGUN_PUBLIC_KEY', 'your-mailgun-public-key')
     ],
 
     'port' => env('MAIL_PORT', 587),
