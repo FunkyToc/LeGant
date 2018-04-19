@@ -43,7 +43,7 @@ return [
     */
 
     'mailgun' => [
-        'from' => env('MAILGUN_FROM', 'valid.email@gmail.com'),
+        'from' => env('MAILGUN_FROM', 'theamazingredglove@gmail.com'),
         'domain' => env('MAILGUN_DOMAIN', 'your-mailgun-domain'),
         'secret' => env('MAILGUN_PRIVATE_KEY', 'your-mailgun-private-key'),
         'public' => env('MAILGUN_PUBLIC_KEY', 'your-mailgun-public-key')

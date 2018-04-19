@@ -29,7 +29,7 @@ class HomeController extends Controller
 	    $text['bye'] = 'A plus beaugosse !';
 
 	    // Get Emails
-	    $emails = ['magaka.lover@gmail.com'];
+	    $emails = ['theamazingredglove@gmail.com'];
 	    $email = $emails[rand(0, count($emails)-1)];
 
 	    // Send Mail
