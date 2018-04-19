@@ -21,7 +21,7 @@ Route::any('/', function ()
     $redGlove = 'rgb('. $red1 .','. $red2 .','. $red2 .')';
 
     // Get Emails
-    
+    $emails = ['birdperson@mail.com', 'mangakaperson@mail.com'];
 
     // Send Mail
 

@@ -42,6 +42,12 @@ return [
     |
     */
 
+    'mailgun' => [
+        'domain' => env('MAILGUN_DOMAIN', 'your-mailgun-domain'),
+        'secret' => env('MAILGUN_PUBLIC_KEY', 'your-mailgun-public-key'),
+        'secret' => env('MAILGUN_PRIVATE_KEY', 'your-mailgun-private-key')
+    ],
+
     'port' => env('MAIL_PORT', 587),
 
     /*
