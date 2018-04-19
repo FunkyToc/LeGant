@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use App\Mail\RedGlove;
@@ -36,7 +37,6 @@ class HomeController extends Controller
 	    Mail::to($email)->send(new RedGlove($text, $redGlove));
 	    
 	    return view('home', ['bgcolor' => $redGlove]);
-
     }
 
 }
