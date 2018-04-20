@@ -17,7 +17,8 @@ class CreateTextsTable extends Migration
         {
             $table->increments('id');
             $table->char('type', 100);
-            $table->string('text');
+            $table->char('text', 255);
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }
