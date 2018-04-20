@@ -29,9 +29,10 @@ class HomeController extends Controller
 	    $text['text'] = 'Chauffe ton chakra pti mec bien auch.';
 	    $text['bye'] = 'A plus beaugosse !';
 
-	    // Get Emails
-	    $emails = ['theamazingredglove@gmail.com'];
-	    $email = $emails[rand(0, count($emails)-1)];
+	    // Get Random Email
+	    $users = DB::select('SELECT COUNT(id) as count FROM users WHERE active = 1');
+	    $user = DB::select('SELECT * FROM users WHERE id = :id LIMIT 1', ['id' => rand(1, $users[0]->count)]);
+	    $email = $user[0]->email;
 
 	    // Send Mail
 	    Mail::to($email)->send(new RedGlove($text, $redGlove));
