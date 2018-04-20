@@ -15,13 +15,21 @@ class GoyController extends Controller
      */
     public function login(Request $request)
     {
+        // Check session 
+        if ($request->session()->has('goy')) {
+            return redirect()->route('admin_home');
+        }
+
         // Allowed admins 
         $admins = [
             'GoyAdmin1' => 'GoyPass1',
             'GoyAdmin2' => 'GoyPass2'
         ];
 
-        if ($request->all()) {
+        $login = '';
+        $pass = '';
+
+        if ($request->input('login') && $request->input('pass')) {
             
             $login = $request->input('login');
             $pass = $request->input('pass');
@@ -37,7 +45,7 @@ class GoyController extends Controller
             }
         }
 
-	    return view('admin.login', ['request' => $request]);
+	    return view('admin.login', ['login' => $login, 'pass' => $pass]);
     }
 
     /**
@@ -48,7 +56,7 @@ class GoyController extends Controller
     public function index(Request $request)
     {
         // Check session 
-        if (!$request->session()->exists('goy')) {
+        if (!$request->session()->has('goy')) {
             return redirect()->route('admin_login');
         }
         
@@ -72,6 +80,11 @@ class GoyController extends Controller
      */
     public function addUser()
     {
+        // Check session 
+        if (!$request->session()->has('goy')) {
+            return redirect()->route('admin_login');
+        }
+
         // Check email exists
 
         // Insert user 
@@ -86,6 +99,11 @@ class GoyController extends Controller
      */
     public function DelUser($id)
     {
+        // Check session 
+        if (!$request->session()->has('goy')) {
+            return redirect()->route('admin_login');
+        }
+        
         // Delete user
 
 	    return redirect()->route('admin_home');
@@ -98,6 +116,11 @@ class GoyController extends Controller
      */
     public function addText()
     {
+        // Check session 
+        if (!$request->session()->has('goy')) {
+            return redirect()->route('admin_login');
+        }
+        
         // Add new text 
 
 	    return redirect()->route('admin_home');
@@ -110,6 +133,11 @@ class GoyController extends Controller
      */
     public function DelText($id)
     {
+        // Check session 
+        if (!$request->session()->has('goy')) {
+            return redirect()->route('admin_login');
+        }
+        
         // Delete text 
 
 	    return redirect()->route('admin_home');

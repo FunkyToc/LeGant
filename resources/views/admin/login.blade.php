@@ -19,18 +19,12 @@
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
-                padding: 0;
+                padding: 10px;
             }
 
             .full-page {
                 height: 100vh;
                 width: 100vw;
-            }
-
-            .top-left {
-                position: absolute;
-                left: 10px;
-                top: 18px;
             }
 
             .title {
@@ -54,8 +48,16 @@
     <body>
         <div class="full-page">
             <div class="">
-                <div class="title top-left">
+                <div class="title">
                     Espace Goy
+                </div>
+                <div id="form">
+                    <form action="" method="POST">
+                        <input type="text" name="login" value="{{ $login }}" required>
+                        <input type="password" name="pass" value="{{ $pass }}" required>
+                        <button>Login</button>
+                        {{ csrf_field() }}
+                    </form>
                 </div>
             </div>
         </div>
