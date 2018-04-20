@@ -13,15 +13,31 @@ class GoyController extends Controller
      *
      * @return Response
      */
-    public function login()
+    public function login(Request $request)
     {
-        // Check admin 
+        // Allowed admins 
+        $admins = [
+            'GoyAdmin1' => 'GoyPass1',
+            'GoyAdmin2' => 'GoyPass2'
+        ];
 
-	    	// Login
+        if ($request->all()) {
+            
+            $login = $request->input('login');
+            $pass = $request->input('pass');
 
-    		// Redirect 
+            // Check admin 
+            if (!empty($admins[$login]) && $admins[$login] === $pass) {
+                
+                // Set session
+                $request->session()->put('goy', 'ImGoy');
 
-	    return view('admin/login', ['request' => $request]);
+                // Redirect 
+                return redirect()->route('admin_home');
+            }
+        }
+
+	    return view('admin.login', ['request' => $request]);
     }
 
     /**
@@ -29,8 +45,13 @@ class GoyController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // Check session 
+        if (!$request->session()->exists('goy')) {
+            return redirect()->route('admin_login');
+        }
+        
         // Check submit 
 
 	    	// Add email
@@ -41,7 +62,7 @@ class GoyController extends Controller
 
 	    // Get User List 
 	    
-	    return view('admin/home', ['request' => $request]);
+	    return view('admin.home', ['request' => $request]);
     }
 
     /**

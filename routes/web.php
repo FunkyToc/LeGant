@@ -15,8 +15,8 @@
 Route::any('/', 'HomeController@index')->name('redglove');
 
 // Admin Pages 
-Route::any('/admin/login', 'GoyController@login')->name('admin_login');
 Route::any('/admin/', 'GoyController@index')->name('admin_home');
+Route::any('/admin/login/', 'GoyController@login')->name('admin_login');
 Route::post('/admin/add/user/', 'GoyController@addUser')->name('admin_add_user');
 Route::post('/admin/del/user/{id}', 'GoyController@delUser')->where('id', '[0-9]+')->name('admin_del_user');
 Route::post('/admin/add/text/', 'GoyController@addText')->name('admin_add_text');
