@@ -49,6 +49,20 @@ class GoyController extends Controller
     }
 
     /**
+     * Logout
+     *
+     * @return Response
+     */
+    public function logout(Request $request)
+    {
+        // Destroy session
+        $request->session()->flush();
+
+        // Redirect 
+        return redirect()->route('admin_login');
+    }
+
+    /**
      * List users & texts
      *
      * @return Response
@@ -103,7 +117,7 @@ class GoyController extends Controller
         if (!$request->session()->has('goy')) {
             return redirect()->route('admin_login');
         }
-        
+
         // Delete user
 
 	    return redirect()->route('admin_home');
@@ -120,7 +134,7 @@ class GoyController extends Controller
         if (!$request->session()->has('goy')) {
             return redirect()->route('admin_login');
         }
-        
+
         // Add new text 
 
 	    return redirect()->route('admin_home');
@@ -137,7 +151,7 @@ class GoyController extends Controller
         if (!$request->session()->has('goy')) {
             return redirect()->route('admin_login');
         }
-        
+
         // Delete text 
 
 	    return redirect()->route('admin_home');
