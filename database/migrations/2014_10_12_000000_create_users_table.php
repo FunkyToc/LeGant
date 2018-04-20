@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->smallInteger('targeted')->default(0);
             $table->smallInteger('rage')->default(0);
-            $table->boolean('active')->default(0);
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

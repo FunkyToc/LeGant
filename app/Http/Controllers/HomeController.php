@@ -25,17 +25,22 @@ class HomeController extends Controller
 
 	    // Get Texts 
 	    $text = [];
-	    $text['hello'] = 'Hello';
-	    $text['text'] = 'Chauffe ton chakra pti mec bien auch.';
-	    $text['bye'] = 'A plus beaugosse !';
+	    $texts['hello'] = DB::select('SELECT id FROM texts WHERE type = "hello" AND active = 1');
+	    $texts['text'] = DB::select('SELECT id FROM texts WHERE type = "text" AND active = 1');
+	    $texts['bye'] = DB::select('SELECT id FROM texts WHERE type = "bye" AND active = 1');
+	    $text['hello'] = DB::select('SELECT * FROM texts WHERE id = :id LIMIT 1', ['id' =>  $texts['hello'][rand(0, count($texts['hello'])-1)]->id])[0]->text;
+	    $text['text'] = DB::select('SELECT * FROM texts WHERE id = :id LIMIT 1', ['id' =>  $texts['text'][rand(0, count($texts['text'])-1)]->id])[0]->text;
+	    $text['bye'] = DB::select('SELECT * FROM texts WHERE id = :id LIMIT 1', ['id' =>  $texts['bye'][rand(0, count($texts['bye'])-1)]->id])[0]->text;
 
-	    // Get Random Email
-	    $users = DB::select('SELECT COUNT(id) as count FROM users WHERE active = 1');
-	    $user = DB::select('SELECT * FROM users WHERE id = :id LIMIT 1', ['id' => rand(1, $users[0]->count)]);
-	    $email = $user[0]->email;
+	    // Get Random User 
+	    $users = DB::select('SELECT id FROM users WHERE email != "" AND active = 1');
+	    $user = DB::select('SELECT * FROM users WHERE id = :id LIMIT 1', ['id' => $users[rand(0, count($users)-1)]->id])[0];
 
-	    // Send Mail
-	    Mail::to($email)->send(new RedGlove($text, $redGlove));
+	    // Update Stats 
+	    DB::update('UPDATE users SET targeted = targeted+1 WHERE id = :id', ['id' => $user->id]);
+
+	    // Send Mail 
+	    Mail::to(trim($user->email))->send(new RedGlove($text, $redGlove));
 	    
 	    return view('home', ['bgcolor' => $redGlove]);
     }

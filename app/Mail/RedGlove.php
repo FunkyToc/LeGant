@@ -30,7 +30,7 @@ class RedGlove extends Mailable
      *
      * @return void
      */
-    public function __construct($text, $bgcolor)
+    public function __construct(array $text, $bgcolor)
     {
         $this->text = $text;
         $this->bgcolor = $bgcolor;
@@ -45,8 +45,8 @@ class RedGlove extends Mailable
     {
         return $this
             ->from(env('MAILGUN_FROM', 'theamazingredglove@gmail.com'))
-            ->view('emails.RedGlove_html')
             ->text('emails.RedGlove_text')
+            ->view('emails.RedGlove_html')
             ->with([
                 'bgcolor' => $this->bgcolor,
                 'hello' => $this->text['hello'],

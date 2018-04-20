@@ -11,8 +11,7 @@
         <style>
 
             html, body {
-                background-color: {{ $bgcolor }};
-                color: #636b6f;
+                color: {{ $bgcolor }};
             }
 
         </style>

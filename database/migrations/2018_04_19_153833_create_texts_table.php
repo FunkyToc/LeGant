@@ -16,9 +16,9 @@ class CreateTextsTable extends Migration
         Schema::create('texts', function (Blueprint $table) 
         {
             $table->increments('id');
-            $table->char('type', 100);
+            $table->char('type', 20);
             $table->char('text', 255);
-            $table->boolean('active')->default(0);
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }
