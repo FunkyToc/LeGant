@@ -73,24 +73,65 @@ class GoyController extends Controller
         if (!$request->session()->has('goy')) {
             return redirect()->route('admin_login');
         }
-        
-        // Check submit 
 
-	    	// Add email
+	    // Get User List + count 
+        $users = DB::select('SELECT * FROM users ORDER BY id DESC LIMIT 10');
+        $mailCount = DB::select('SELECT SUM(targeted) as mails FROM users')[0]->mails;
+        $rageCount = DB::select('SELECT SUM(rage) as rages FROM users')[0]->rages;
 
-	    	// Add text 
+	    // Get Text List + count 
+        $texts = DB::select('SELECT * FROM texts ORDER BY id DESC LIMIT 10');
+	    
+	    return view('admin.home', [
+            'mailCount' => $mailCount,
+            'rageCount' => $rageCount,
+            'users' => $users,
+            'texts' => $texts
+        ]);
+    }
 
-	    // Get User List 
+    /**
+     * List users & texts
+     *
+     * @return Response
+     */
+    public function users(Request $request)
+    {
+        // Check session 
+        if (!$request->session()->has('goy')) {
+            return redirect()->route('admin_login');
+        }
+
+        // 
+
+        // Get User List 
         $users = DB::select('SELECT * FROM users WHERE email != "" ORDER BY id DESC');
+        
+        return view('admin.users', [
+            'request' => $request,
+            'users' => $users
+        ]);
+    }
 
-	    // Get Text List 
+    /**
+     * List users & texts
+     *
+     * @return Response
+     */
+    public function texts(Request $request)
+    {
+        // Check session 
+        if (!$request->session()->has('goy')) {
+            return redirect()->route('admin_login');
+        }
+
+        // Get Text List 
         $texts['hello'] = DB::select('SELECT * FROM texts WHERE type = "hello" ORDER BY id DESC');
         $texts['text'] = DB::select('SELECT * FROM texts WHERE type = "text" ORDER BY id DESC');
         $texts['bye'] = DB::select('SELECT * FROM texts WHERE type = "bye" ORDER BY id DESC');
-	    
-	    return view('admin.home', [
+        
+        return view('admin.texts', [
             'request' => $request,
-            'users' => $users,
             'texts' => $texts
         ]);
     }

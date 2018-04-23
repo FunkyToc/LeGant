@@ -17,7 +17,6 @@
                 color: #636b6f;
                 font-family: 'Poiret One', sans-serif;
                 font-weight: 100;
-                height: 100vh;
                 margin: 0;
                 padding: 10px;
             }
@@ -31,7 +30,12 @@
                 font-weight: bold;
                 color: #ba9400;
             }
-            
+
+            #menu p {
+                margin-top: 0;
+                font-size: 1.2rem;
+            }
+
             .title {
                 font-size: 50px;
                 color: #636b6f;
@@ -59,9 +63,9 @@
                 padding-right: 5px;
             }
 
-            #userList, #textList {
+            #news, #userList, #textList {
                 text-align: left;
-                margin-top: 30px;
+                margin-top: 10px;
                 padding: 10px;
 
             }

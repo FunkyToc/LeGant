@@ -1,15 +1,20 @@
 @include('admin/partials/header')
 
-    <div class="full-page">
+    <div>
 
         <div class="">
             <div class="title">
                 Espace Goy
             </div>
-            @include('admin/partials/admin-menu')
+            @include('admin/partials/menu')
+        </div>
+
+        <div id="news">
+            <p>Au total, <b>{{ $mailCount }}</b> mails envoyés avec amour, grace auxquels la fonte de la banquise c'est accentuée de <b>{{ round($mailCount * 0.0146, 0) }}</b> mètres. <b>{{ $rageCount }}</b> rageux on tentés la désinscription.</p>
         </div>
 
         <div id="userList">
+            <h3>Last Mangakas</h3>
             <table>
                 <tr>
                     <th>Email</th>
@@ -30,6 +35,7 @@
         </div>
 
         <div id="textList">
+            <h3>Last Punchlines</h3>
             <table>
                 <tr>
                     <th>Type</th>
@@ -38,8 +44,8 @@
                     <th>Action</th>
                 </tr>
 
-                @foreach ($texts['hello'] as $text)
-                    <tr id="hello">
+                @foreach ($texts as $text)
+                    <tr>
                         <td><b>{{ $text->type }}</b></td>
                         <td>{{ $text->text }}</td> 
                         <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
@@ -47,37 +53,6 @@
                     </tr>
                 @endforeach
 
-                <tr class="space">
-                    <th>Type</th>
-                    <th>Text</th> 
-                    <th>Creation</th>
-                    <th>Action</th>
-                </tr>
-
-                @foreach ($texts['text'] as $text)
-                    <tr id="text">
-                        <td><b>{{ $text->type }}</b></td>
-                        <td>{{ $text->text }}</td> 
-                        <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
-                        <td><a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Suppr</a></td>
-                    </tr>
-                @endforeach
-                
-                <tr class="space">
-                    <th>Type</th>
-                    <th>Text</th> 
-                    <th>Creation</th>
-                    <th>Action</th>
-                </tr>
-
-                @foreach ($texts['bye'] as $text)
-                    <tr id="bye">
-                        <td><b>{{ $text->type }}</b></td>
-                        <td>{{ $text->text }}</td> 
-                        <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
-                        <td><a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Suppr</a></td>
-                    </tr>
-                @endforeach
             </table>
 
         </div>
