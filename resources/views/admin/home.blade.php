@@ -1,89 +1,87 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@include('admin/partials/header')
 
-        <title>LeGant</title>
+    <div class="full-page">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-
-            html, body {
-                color: #636b6f;
-                font-family: 'Poiret One', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-                padding: 10px;
-            }
-
-            .full-page {
-                height: 100vh;
-                width: 100vw;
-            }
-
-            .title {
-                font-size: 50px;
-                color: #636b6f;
-                font-style: italic; 
-                text-decoration: none !important;
-            }
-
-            a:hover, a:focus {
-                text-decoration: none !important;
-            }
-
-            a:onclick {
-                color : black;
-            }
-
-        </style>
-    </head>
-
-    <body>
-        <div class="full-page">
-
-            <div class="">
-                <div class="title">
-                    Espace Goy
-                </div>
-                @include('admin/admin-menu')
+        <div class="">
+            <div class="title">
+                Espace Goy
             </div>
+            @include('admin/partials/admin-menu')
+        </div>
 
-            <div id="userList">
-                <ul>
-                    <li>User1</li>
-                    <li>User2</li>
-                </ul>
-            </div>
+        <div id="userList">
+            <table>
+                <tr>
+                    <th>Email</th>
+                    <th>Targeted</th> 
+                    <th>Creation</th>
+                    <th>Action</th>
+                </tr>
 
-            <div id="textList">
-                <div id="hello">
-                    <ul>
-                        <li>Hello1</li>
-                        <li>Hello2</li>
-                    </ul>
-                </div>
-                <div id="text">
-                    <ul>
-                        <li>text1</li>
-                        <li>text2</li>
-                    </ul>
-                </div>
-                <div id="bye">
-                    <ul>
-                        <li>bye1</li>
-                        <li>bye2</li>
-                    </ul>
-                </div>
-            </div>
+                @foreach ($users as $user)
+                    <tr>
+                        <td><b>{{ $user->email }}</b></td>
+                        <td>{{ $user->targeted }}</td> 
+                        <td>{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
+                        <td><a href="{{ route('admin_del_user', ['id' => $user->id]) }}">Suppr</a></td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+
+        <div id="textList">
+            <table>
+                <tr>
+                    <th>Type</th>
+                    <th>Text</th> 
+                    <th>Creation</th>
+                    <th>Action</th>
+                </tr>
+
+                @foreach ($texts['hello'] as $text)
+                    <tr id="hello">
+                        <td><b>{{ $text->type }}</b></td>
+                        <td>{{ $text->text }}</td> 
+                        <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
+                        <td><a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Suppr</a></td>
+                    </tr>
+                @endforeach
+
+                <tr class="space">
+                    <th>Type</th>
+                    <th>Text</th> 
+                    <th>Creation</th>
+                    <th>Action</th>
+                </tr>
+
+                @foreach ($texts['text'] as $text)
+                    <tr id="text">
+                        <td><b>{{ $text->type }}</b></td>
+                        <td>{{ $text->text }}</td> 
+                        <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
+                        <td><a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Suppr</a></td>
+                    </tr>
+                @endforeach
+                
+                <tr class="space">
+                    <th>Type</th>
+                    <th>Text</th> 
+                    <th>Creation</th>
+                    <th>Action</th>
+                </tr>
+
+                @foreach ($texts['bye'] as $text)
+                    <tr id="bye">
+                        <td><b>{{ $text->type }}</b></td>
+                        <td>{{ $text->text }}</td> 
+                        <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
+                        <td><a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Suppr</a></td>
+                    </tr>
+                @endforeach
+            </table>
 
         </div>
-    </body>
 
-</html>
+    </div>
+
+@include('admin/partials/footer')

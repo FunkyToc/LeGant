@@ -80,11 +80,19 @@ class GoyController extends Controller
 
 	    	// Add text 
 
-	    // Get Email List 
-
 	    // Get User List 
+        $users = DB::select('SELECT * FROM users WHERE email != "" ORDER BY id DESC');
+
+	    // Get Text List 
+        $texts['hello'] = DB::select('SELECT * FROM texts WHERE type = "hello" ORDER BY id DESC');
+        $texts['text'] = DB::select('SELECT * FROM texts WHERE type = "text" ORDER BY id DESC');
+        $texts['bye'] = DB::select('SELECT * FROM texts WHERE type = "bye" ORDER BY id DESC');
 	    
-	    return view('admin.home', ['request' => $request]);
+	    return view('admin.home', [
+            'request' => $request,
+            'users' => $users,
+            'texts' => $texts
+        ]);
     }
 
     /**
