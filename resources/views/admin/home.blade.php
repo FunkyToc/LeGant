@@ -24,11 +24,11 @@
                 </tr>
 
                 @foreach ($users as $user)
-                    <tr>
+                    <tr class="{{ $user->active ? '' : 'deleted' }}">
                         <td><b>{{ $user->email }}</b></td>
                         <td>{{ $user->targeted }}</td> 
                         <td>{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
-                        <td><a href="{{ route('admin_del_user', ['id' => $user->id]) }}">Suppr</a></td>
+                        <td><a href="{{ route('admin_active_user', ['id' => $user->id]) }}">Suppr</a></td>
                     </tr>
                 @endforeach
             </table>
@@ -45,11 +45,11 @@
                 </tr>
 
                 @foreach ($texts as $text)
-                    <tr>
+                    <tr class="{{ $text->active ? '' : 'deleted' }}">
                         <td><b>{{ $text->type }}</b></td>
                         <td>{{ $text->text }}</td> 
                         <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
-                        <td><a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Suppr</a></td>
+                        <td><a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Suppr</a></td>
                     </tr>
                 @endforeach
 

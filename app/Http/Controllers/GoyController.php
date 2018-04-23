@@ -156,30 +156,11 @@ class GoyController extends Controller
     }
 
     /**
-     * Add a user
+     * Active / unactive a user
      *
      * @return Response
      */
-    public function addUser()
-    {
-        // Check session 
-        if (!$request->session()->has('goy')) {
-            return redirect()->route('admin_login');
-        }
-
-        // Check email exists
-
-        // Insert user 
-
-	    return redirect()->route('admin_home');
-    }
-
-    /**
-     * Delete a user
-     *
-     * @return Response
-     */
-    public function DelUser($id)
+    public function activeUser(Request $request, int $id)
     {
         // Check session 
         if (!$request->session()->has('goy')) {
@@ -187,25 +168,14 @@ class GoyController extends Controller
         }
 
         // Delete user
+        $user = DB::select('SELECT id, active FROM users WHERE id = :id', ['id' => $id])[0];
 
-	    return redirect()->route('admin_home');
-    }
-
-    /**
-     * Add a text
-     *
-     * @return Response
-     */
-    public function addText()
-    {
-        // Check session 
-        if (!$request->session()->has('goy')) {
-            return redirect()->route('admin_login');
+        if ($user->id) {
+            $reverse = $user->active ? 0 : 1;
+            DB::update('UPDATE users SET active = :reverse WHERE id = :id', ['reverse' => $reverse, 'id' => $id]);
         }
 
-        // Add new text 
-
-	    return redirect()->route('admin_home');
+	    return redirect()->back();
     }
 
     /**
@@ -213,7 +183,7 @@ class GoyController extends Controller
      *
      * @return Response
      */
-    public function DelText($id)
+    public function activeText(Request $request, int $id)
     {
         // Check session 
         if (!$request->session()->has('goy')) {
@@ -221,8 +191,14 @@ class GoyController extends Controller
         }
 
         // Delete text 
+        $text = DB::select('SELECT id, active FROM texts WHERE id = :id', ['id' => $id])[0];
 
-	    return redirect()->route('admin_home');
+        if ($text->id) {
+            $reverse = $text->active ? 0 : 1;
+            DB::update('UPDATE texts SET active = :reverse WHERE id = :id', ['reverse' => $reverse, 'id' => $id]);
+        }
+
+	    return redirect()->back();
     }
 
 }

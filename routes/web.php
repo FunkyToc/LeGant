@@ -20,10 +20,8 @@ Route::any('/admin/users/', 'GoyController@users')->name('admin_manage_users');
 Route::any('/admin/texts/', 'GoyController@texts')->name('admin_manage_texts');
 Route::any('/admin/login/', 'GoyController@login')->name('admin_login');
 Route::any('/admin/logout/', 'GoyController@logout')->name('admin_logout');
-Route::post('/admin/add/user/', 'GoyController@addUser')->name('admin_add_user');
-Route::post('/admin/del/user/{id}', 'GoyController@delUser')->where('id', '[0-9]+')->name('admin_del_user');
-Route::post('/admin/add/text/', 'GoyController@addText')->name('admin_add_text');
-Route::post('/admin/del/text/{id}', 'GoyController@delText')->where('id', '[0-9]+')->name('admin_del_text');
+Route::any('/admin/active/user/{id}', 'GoyController@activeUser')->where('id', '[0-9]+')->name('admin_active_user');
+Route::any('/admin/active/text/{id}', 'GoyController@activeText')->where('id', '[0-9]+')->name('admin_active_text');
 
 // Redirect All Other Routes to the Home Page 
 Route::any('/{any}', function ($any) 

@@ -35,9 +35,9 @@
                         <td>{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
                         <td>
                             @if($user->active)
-                                <a href="{{ route('admin_del_user', ['id' => $user->id]) }}">Suppr</a>
+                                <a href="{{ route('admin_active_user', ['id' => $user->id]) }}">Suppr</a>
                             @else
-                                <a href="{{ route('admin_del_user', ['id' => $user->id]) }}">Active</a>
+                                <a href="{{ route('admin_active_user', ['id' => $user->id]) }}">Active</a>
                             @endif
                         </td>
                     </tr>

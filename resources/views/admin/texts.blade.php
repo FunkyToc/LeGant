@@ -42,9 +42,9 @@
                         <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
                         <td>
                             @if($text->active)
-                                <a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Suppr</a>
+                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Suppr</a>
                             @else
-                                <a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Active</a>
+                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Active</a>
                             @endif
                         </td>
                     </tr>
@@ -64,9 +64,9 @@
                         <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
                         <td>
                             @if($text->active)
-                                <a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Suppr</a>
+                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Suppr</a>
                             @else
-                                <a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Active</a>
+                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Active</a>
                             @endif
                         </td>
                     </tr>
@@ -86,9 +86,9 @@
                         <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
                         <td>
                             @if($text->active)
-                                <a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Suppr</a>
+                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Suppr</a>
                             @else
-                                <a href="{{ route('admin_del_text', ['id' => $text->id]) }}">Active</a>
+                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Active</a>
                             @endif
                         </td>
                     </tr>
