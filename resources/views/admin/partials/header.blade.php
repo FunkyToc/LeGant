@@ -63,7 +63,7 @@
                 padding-right: 5px;
             }
 
-            #news, #userList, #textList {
+            #add, #news, #userList, #textList {
                 text-align: left;
                 margin-top: 10px;
                 padding: 10px;

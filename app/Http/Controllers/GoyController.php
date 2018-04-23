@@ -102,7 +102,15 @@ class GoyController extends Controller
             return redirect()->route('admin_login');
         }
 
-        // 
+        // New user
+        if ($request->input('email')) {
+            
+            $validation = $request->validate([
+                'email' => 'required|email|unique:users,email|max:255'
+            ]);
+
+            DB::insert('INSERT INTO users (email, created_at, updated_at) VALUES (:email, NOW(), NOW())', ['email' => $validation['email']]);
+        }
 
         // Get User List 
         $users = DB::select('SELECT * FROM users WHERE email != "" ORDER BY id DESC');

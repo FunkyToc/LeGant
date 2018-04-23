@@ -9,6 +9,15 @@
             @include('admin/partials/menu')
         </div>
 
+        <div id="add">
+            <h3>Ajouter un Mangaka</h3>
+            <form action="" method="POST">
+                <input type="email" name="email" required>
+                <button>Valider</button>
+                {{ csrf_field() }}
+            </form>
+        </div>
+
         <div id="userList">
             <h3>Mangakas <span>({{ count($users) }})</span></h3>
             <table>
