@@ -12,7 +12,7 @@
         <div id="add">
             <h3>Ajouter un Mangaka</h3>
             <form action="" method="POST">
-                <input type="email" name="email" required>
+                <input id="input-text" type="email" placeholder="mangaka@mail.com" name="email" required>
                 <button>Valider</button>
                 {{ csrf_field() }}
             </form>
@@ -29,11 +29,17 @@
                 </tr>
 
                 @foreach ($users as $user)
-                    <tr>
+                    <tr class="{{ $user->active ? '' : 'deleted' }}">
                         <td><b>{{ $user->email }}</b></td>
                         <td>{{ $user->targeted }}</td> 
                         <td>{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
-                        <td><a href="{{ route('admin_del_user', ['id' => $user->id]) }}">Suppr</a></td>
+                        <td>
+                            @if($user->active)
+                                <a href="{{ route('admin_del_user', ['id' => $user->id]) }}">Suppr</a>
+                            @else
+                                <a href="{{ route('admin_del_user', ['id' => $user->id]) }}">Active</a>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
 

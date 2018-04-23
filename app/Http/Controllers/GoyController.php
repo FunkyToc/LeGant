@@ -109,7 +109,7 @@ class GoyController extends Controller
                 'email' => 'required|email|unique:users,email|max:255'
             ]);
 
-            DB::insert('INSERT INTO users (email, created_at, updated_at) VALUES (:email, NOW(), NOW())', ['email' => $validation['email']]);
+            DB::insert('INSERT INTO users (email, active, created_at, updated_at) VALUES (:email, 1, NOW(), NOW())', ['email' => $validation['email']]);
         }
 
         // Get User List 
@@ -131,6 +131,17 @@ class GoyController extends Controller
         // Check session 
         if (!$request->session()->has('goy')) {
             return redirect()->route('admin_login');
+        }
+
+        // New user
+        if ($request->input('type') && $request->input('text')) {
+            
+            $validation = $request->validate([
+                'type' => 'required|max:255',
+                'text' => 'required|max:255|unique:texts,text'
+            ]);
+
+            DB::insert('INSERT INTO texts (type, text, active, created_at, updated_at) VALUES (:type, :text, 1, NOW(), NOW())', ['type' => $validation['type'], 'text' => $validation['text']]);
         }
 
         // Get Text List 

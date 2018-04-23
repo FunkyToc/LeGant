@@ -63,11 +63,18 @@
                 padding-right: 5px;
             }
 
+            tr.deleted {
+                opacity: 0.5;
+            }
+
             #add, #news, #userList, #textList {
                 text-align: left;
                 margin-top: 10px;
                 padding: 10px;
+            }
 
+            #input-text {
+                width: 80%;
             }
 
         </style>
