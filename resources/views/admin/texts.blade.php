@@ -40,13 +40,7 @@
                         <td><b>{{ $text->type }}</b></td>
                         <td>{{ $text->text }}</td> 
                         <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
-                        <td>
-                            @if($text->active)
-                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Suppr</a>
-                            @else
-                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Active</a>
-                            @endif
-                        </td>
+                        <td><a href="{{ route('admin_active_text', ['id' => $text->id]) }}">{{ $text->active ? 'Suppr' : 'Active' }}</a></td>
                     </tr>
                 @endforeach
 
@@ -62,13 +56,7 @@
                         <td><b>{{ $text->type }}</b></td>
                         <td>{{ $text->text }}</td> 
                         <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
-                        <td>
-                            @if($text->active)
-                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Suppr</a>
-                            @else
-                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Active</a>
-                            @endif
-                        </td>
+                        <td><a href="{{ route('admin_active_text', ['id' => $text->id]) }}">{{ $text->active ? 'Suppr' : 'Active' }}</a></td>
                     </tr>
                 @endforeach
                 
@@ -84,13 +72,7 @@
                         <td><b>{{ $text->type }}</b></td>
                         <td>{{ $text->text }}</td> 
                         <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
-                        <td>
-                            @if($text->active)
-                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Suppr</a>
-                            @else
-                                <a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Active</a>
-                            @endif
-                        </td>
+                        <td><a href="{{ route('admin_active_text', ['id' => $text->id]) }}">{{ $text->active ? 'Suppr' : 'Active' }}</a></td>
                     </tr>
                 @endforeach
             </table>

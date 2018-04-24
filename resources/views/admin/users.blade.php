@@ -33,13 +33,7 @@
                         <td><b>{{ $user->email }}</b></td>
                         <td>{{ $user->targeted }}</td> 
                         <td>{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
-                        <td>
-                            @if($user->active)
-                                <a href="{{ route('admin_active_user', ['id' => $user->id]) }}">Suppr</a>
-                            @else
-                                <a href="{{ route('admin_active_user', ['id' => $user->id]) }}">Active</a>
-                            @endif
-                        </td>
+                        <td><a href="{{ route('admin_active_user', ['id' => $user->id]) }}">{{ $user->active ? 'Suppr' : 'Active' }}</a></td>
                     </tr>
                 @endforeach
 

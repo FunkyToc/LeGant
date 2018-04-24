@@ -28,7 +28,7 @@
                         <td><b>{{ $user->email }}</b></td>
                         <td>{{ $user->targeted }}</td> 
                         <td>{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
-                        <td><a href="{{ route('admin_active_user', ['id' => $user->id]) }}">Suppr</a></td>
+                        <td><a href="{{ route('admin_active_user', ['id' => $user->id]) }}">{{ $user->active ? 'Suppr' : 'Active' }}</a></td>
                     </tr>
                 @endforeach
             </table>
@@ -49,7 +49,7 @@
                         <td><b>{{ $text->type }}</b></td>
                         <td>{{ $text->text }}</td> 
                         <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
-                        <td><a href="{{ route('admin_active_text', ['id' => $text->id]) }}">Suppr</a></td>
+                        <td><a href="{{ route('admin_active_text', ['id' => $text->id]) }}">{{ $text->active ? 'Suppr' : 'Active' }}</a></td>
                     </tr>
                 @endforeach
 
