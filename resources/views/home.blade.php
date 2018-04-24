@@ -24,8 +24,8 @@
             }
 
             .full-page {
-                height: 100vh;
-                width: 100vw;
+                height: 100%;
+                width: 100%;
             }
 
             .top-left {
@@ -35,10 +35,11 @@
             }
 
             .title {
-                font-size: 50px;
+                font-size: 40px;
                 color: #636b6f;
                 font-style: italic; 
                 text-decoration: none !important;
+                opacity: 0.8;
             }
 
             a:hover, a:focus {
@@ -63,6 +64,15 @@
                 </div>
             </div>
         </a>
+
+        <audio id="gant" hidden>
+            <source src="{{ asset('sound/gant.mp3') }}" type="audio/mpeg">
+        </audio>
+
+        <script>
+            setTimeout(function(){ document.getElementById('gant').play(); }, 200);
+        </script>
+
     </body>
 
 </html>
