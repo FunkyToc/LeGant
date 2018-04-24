@@ -19,9 +19,11 @@
 
     <body>
         <div>
-            {{ $hello }},
+            <p>{{ $hello }},</p>
             <p>{{ $text }}</p>
             <p>{{ $bye }}</p>
+            <br>
+            <p>Signé, {{ $sign }}</p>
         </div>
     </body>
 

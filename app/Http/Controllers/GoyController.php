@@ -148,6 +148,7 @@ class GoyController extends Controller
         $texts['hello'] = DB::select('SELECT * FROM texts WHERE type = "hello" ORDER BY id DESC');
         $texts['text'] = DB::select('SELECT * FROM texts WHERE type = "text" ORDER BY id DESC');
         $texts['bye'] = DB::select('SELECT * FROM texts WHERE type = "bye" ORDER BY id DESC');
+        $texts['sign'] = DB::select('SELECT * FROM texts WHERE type = "sign" ORDER BY id DESC');
         
         return view('admin.texts', [
             'request' => $request,

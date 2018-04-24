@@ -71,10 +71,15 @@
                 text-align: left;
                 margin-top: 10px;
                 padding: 10px;
+                font-size: 1.1rem;
             }
 
             #input-text {
                 width: 80%;
+            }
+
+            .prefix {
+                opacity: 0.7;
             }
 
         </style>
