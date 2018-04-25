@@ -71,7 +71,7 @@ class GoyController extends Controller
     {
         // Check session 
         if (!$request->session()->has('goy')) {
-            return redirect()->route('admin_login');
+            return redirect()->route('admin_logout');
         }
 
 	    // Get User List + count 
@@ -99,7 +99,7 @@ class GoyController extends Controller
     {
         // Check session 
         if (!$request->session()->has('goy')) {
-            return redirect()->route('admin_login');
+            return redirect()->route('admin_logout');
         }
 
         // New user
@@ -130,7 +130,7 @@ class GoyController extends Controller
     {
         // Check session 
         if (!$request->session()->has('goy')) {
-            return redirect()->route('admin_login');
+            return redirect()->route('admin_logout');
         }
 
         // New user
@@ -165,7 +165,7 @@ class GoyController extends Controller
     {
         // Check session 
         if (!$request->session()->has('goy')) {
-            return redirect()->route('admin_login');
+            return redirect()->route('admin_logout');
         }
 
         // Delete user
@@ -188,7 +188,7 @@ class GoyController extends Controller
     {
         // Check session 
         if (!$request->session()->has('goy')) {
-            return redirect()->route('admin_login');
+            return redirect()->route('admin_logout');
         }
 
         // Delete text 
