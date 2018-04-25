@@ -103,7 +103,7 @@ class GoyController extends Controller
     }
 
     /**
-     * List users & texts
+     * List users
      *
      * @return Response
      */
@@ -134,7 +134,7 @@ class GoyController extends Controller
     }
 
     /**
-     * List users & texts
+     * List texts
      *
      * @return Response
      */
@@ -169,6 +169,29 @@ class GoyController extends Controller
     }
 
     /**
+     * List dissidence
+     *
+     * @return Response
+     */
+    public function dissidence(Request $request)
+    {
+        // Check session 
+        if (!$request->session()->has('goy')) {
+            return redirect()->route('admin_logout');
+        }
+
+        // Get Dissidence
+        $users = DB::select('SELECT * FROM users WHERE active = 0 ORDER BY id DESC');
+        $texts = DB::select('SELECT * FROM texts WHERE active = 0 ORDER BY id DESC');
+        
+        return view('admin.dissidence', [
+            'request' => $request,
+            'users' => $users,
+            'texts' => $texts
+        ]);
+    }
+
+    /**
      * Active / unactive a user
      *
      * @return Redirection
@@ -185,7 +208,7 @@ class GoyController extends Controller
 
         if ($user->id) {
             $reverse = $user->active ? 0 : 1;
-            DB::update('UPDATE users SET active = :reverse WHERE id = :id', ['reverse' => $reverse, 'id' => $id]);
+            DB::update('UPDATE users SET active = :reverse, updated_at = NOW() WHERE id = :id', ['reverse' => $reverse, 'id' => $id]);
         }
 
 	    return redirect()->back();
@@ -208,7 +231,7 @@ class GoyController extends Controller
 
         if ($text->id) {
             $reverse = $text->active ? 0 : 1;
-            DB::update('UPDATE texts SET active = :reverse WHERE id = :id', ['reverse' => $reverse, 'id' => $id]);
+            DB::update('UPDATE texts SET active = :reverse, updated_at = NOW() WHERE id = :id', ['reverse' => $reverse, 'id' => $id]);
         }
 
 	    return redirect()->back();
@@ -227,7 +250,7 @@ class GoyController extends Controller
         }
 
         // Check id
-        $entity = DB::select('SELECT id FROM users WHERE id = :id', ['id' => $id])[0];
+        $entity = DB::select('SELECT id FROM users WHERE id = :id AND active = 0', ['id' => $id])[0];
 
         // Delete text 
         if ($entity->id) {
@@ -250,7 +273,7 @@ class GoyController extends Controller
         }
 
         // Check id
-        $entity = DB::select('SELECT id FROM texts WHERE id = :id', ['id' => $id])[0];
+        $entity = DB::select('SELECT id FROM texts WHERE id = :id AND active = 0', ['id' => $id])[0];
 
         // Delete text 
         if ($entity->id) {
