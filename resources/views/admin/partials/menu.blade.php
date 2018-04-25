@@ -7,3 +7,5 @@
 		<a href="http://okmdb.fr" target="_blank">okmdb.fr</a>
 	</p>
 </div>
+
+@include('admin/partials/player')

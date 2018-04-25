@@ -86,4 +86,4 @@
         </style>
     </head>
 
-    <body>
+    <body onclick="play()">
