@@ -8,51 +8,14 @@
 
         <title>LeGant</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
-
         <!-- Styles -->
+        <link href="{{ asset('css/public_style.css') }}" rel="stylesheet">
         <style>
-
             html, body {
                 background-color: {{ $bgcolor }};
-                color: #636b6f;
-                font-family: 'Poiret One', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-                padding: 0;
             }
-
-            .full-page {
-                height: 100%;
-                width: 100%;
-            }
-
-            .top-left {
-                position: absolute;
-                left: 10px;
-                top: 18px;
-            }
-
-            .title {
-                font-size: 40px;
-                color: #636b6f;
-                font-style: italic; 
-                text-decoration: none !important;
-                opacity: 0.8;
-            }
-
-            a:hover, a:focus {
-                color: {{ $bgcolor }};
-                text-decoration: none !important;
-            }
-
-            a:onclick {
-                color : black;
-            }
-
         </style>
+
     </head>
 
     <body>
@@ -70,9 +33,7 @@
             <source src="{{ asset('sound/gant.mp3') }}" type="audio/mpeg">
         </audio>
 
-        <script>
-            setTimeout(function(){ document.getElementById('gant').play(); }, 200);
-        </script>
+        <script src="{{ asset('js/public_script.js') }}"></script>
 
     </body>
 
