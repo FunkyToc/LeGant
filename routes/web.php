@@ -22,6 +22,8 @@ Route::any('/admin/login/', 'GoyController@login')->name('admin_login');
 Route::any('/admin/logout/', 'GoyController@logout')->name('admin_logout');
 Route::any('/admin/active/user/{id}', 'GoyController@activeUser')->where(['id' => '[0-9]+'])->name('admin_active_user');
 Route::any('/admin/active/text/{id}', 'GoyController@activeText')->where(['id' => '[0-9]+'])->name('admin_active_text');
+Route::any('/admin/delete/user/{id}', 'GoyController@deleteUser')->where(['id' => '[0-9]+'])->name('admin_delete_user');
+Route::any('/admin/delete/text/{id}', 'GoyController@deleteText')->where(['id' => '[0-9]+'])->name('admin_delete_text');
 
 // Redirect All Admin Other Routes to the Home Page 
 Route::any('/admin/{any}', function ($any) 

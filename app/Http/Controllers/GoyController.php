@@ -7,7 +7,24 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class GoyController extends Controller
-{
+{ 
+    /**
+     * Allowed text types
+     *
+     *  (array)
+     */
+    private $types = ['hello', 'text', 'bye', 'sign'];
+
+    /**
+     * Allowed admins
+     *
+     *  (array) [pseudo => password]
+     */
+    private $admins = [
+        'GoyAdmin1' => 'GoyPass1',
+        'GoyAdmin2' => 'GoyPass2'
+    ];
+
     /**
      * Log as Admin
      *
@@ -20,11 +37,6 @@ class GoyController extends Controller
             return redirect()->route('admin_home');
         }
 
-        // Allowed admins 
-        $admins = [
-            'GoyAdmin1' => 'GoyPass1',
-            'GoyAdmin2' => 'GoyPass2'
-        ];
 
         $login = '';
         $pass = '';
@@ -35,7 +47,7 @@ class GoyController extends Controller
             $pass = $request->input('pass');
 
             // Check admin 
-            if (!empty($admins[$login]) && $admins[$login] === $pass) {
+            if (!empty($this->admins[$login]) && $this->admins[$login] === $pass) {
                 
                 // Set session
                 $request->session()->put('goy', 'ImGoy');
@@ -159,7 +171,7 @@ class GoyController extends Controller
     /**
      * Active / unactive a user
      *
-     * @return Response
+     * @return Redirection
      */
     public function activeUser(Request $request, int $id)
     {
@@ -182,7 +194,7 @@ class GoyController extends Controller
     /**
      * Delete a text
      *
-     * @return Response
+     * @return Redirection
      */
     public function activeText(Request $request, int $id)
     {
@@ -200,6 +212,52 @@ class GoyController extends Controller
         }
 
 	    return redirect()->back();
+    }
+
+    /**
+     * Delete user
+     *
+     * @return Redirection
+     */
+    public function deleteUser(Request $request, int $id)
+    {
+        // Check session 
+        if (!$request->session()->has('goy')) {
+            return redirect()->route('admin_logout');
+        }
+
+        // Check id
+        $entity = DB::select('SELECT id FROM users WHERE id = :id', ['id' => $id])[0];
+
+        // Delete text 
+        if ($entity->id) {
+            $text = DB::delete('DELETE FROM users WHERE id = :id AND active = 0 LIMIT 1', ['id' => $id]);
+        }
+
+        return redirect()->back();
+    }
+
+    /**
+     * Delete text
+     *
+     * @return Redirection
+     */
+    public function deleteText(Request $request, int $id)
+    {
+        // Check session 
+        if (!$request->session()->has('goy')) {
+            return redirect()->route('admin_logout');
+        }
+
+        // Check id
+        $entity = DB::select('SELECT id FROM texts WHERE id = :id', ['id' => $id])[0];
+
+        // Delete text 
+        if ($entity->id) {
+            $text = DB::delete('DELETE FROM texts WHERE id = :id AND active = 0 LIMIT 1', ['id' => $id]);
+        }
+
+        return redirect()->back();
     }
 
 }
