@@ -27,7 +27,7 @@
         </div>
 
         <div id="textList">
-            <h3>Punchlines <span>({{ count($texts['hello']) + count($texts['text']) + count($texts['bye']) }})</span></h3>
+            <h3>Punchlines <span>({{ count($texts['hello']) + count($texts['text']) + count($texts['bye']) + count($texts['sign']) + count($texts['adj']) }})</span></h3>
 
             <table>
                 <tr>
