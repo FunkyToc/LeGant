@@ -18,6 +18,7 @@
                     <option value="text">text</option>
                     <option value="bye">bye</option>
                     <option value="sign">sign</option>
+                    <option value="adj">adj</option>
                 </select>
                 <input id="input-text" type="text" placeholder="Allez viens, on est bien !" name="text" required>
                 <button>Valider</button>
@@ -35,7 +36,7 @@
                     <th>Creation</th>
                     <th>Action</th>
                 </tr>
-
+    
                 @foreach ($texts['hello'] as $text)
                     <tr id="hello" class="{{ $text->active ? '' : 'deleted' }}">
                         <td><b>{{ $text->type }}</b></td>
@@ -87,11 +88,28 @@
                 @foreach ($texts['sign'] as $text)
                     <tr id="bye" class="{{ $text->active ? '' : 'deleted' }}">
                         <td><b>{{ $text->type }}</b></td>
-                        <td><i class="prefix">Signé,</i> {{ $text->text }}</td> 
+                        <td><i class="prefix">Signé,</i> {{ $text->text }} <i class="prefix">Gant ...</i></td> 
                         <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
                         <td><a href="{{ route('admin_active_text', ['id' => $text->id]) }}">{{ $text->active ? 'Suppr' : 'Active' }}</a></td>
                     </tr>
                 @endforeach
+
+                <tr class="space">
+                    <th>Type</th>
+                    <th>Text</th> 
+                    <th>Creation</th>
+                    <th>Action</th>
+                </tr>
+
+                @foreach ($texts['adj'] as $text)
+                    <tr id="bye" class="{{ $text->active ? '' : 'deleted' }}">
+                        <td><b>{{ $text->type }}</b></td>
+                        <td><i class="prefix">Signé ... Gant</i> {{ $text->text }}<i class="prefix">.</i></td> 
+                        <td>{{ date('d-m-Y', strtotime($text->created_at)) }}</td>
+                        <td><a href="{{ route('admin_active_text', ['id' => $text->id]) }}">{{ $text->active ? 'Suppr' : 'Active' }}</a></td>
+                    </tr>
+                @endforeach
+
             </table>
 
         </div>

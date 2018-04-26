@@ -44,7 +44,7 @@ class RedGlove extends Mailable
     public function build()
     {
         return $this
-            ->from(env('MAILGUN_FROM', 'theamazingredglove@gmail.com'))
+            ->from(env('MAIL_FROM', 'theamazingredglove@gmail.com'))
             ->text('emails.RedGlove_text')
             ->view('emails.RedGlove_html')
             ->with([

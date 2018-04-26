@@ -2,4 +2,4 @@
 {{ $text }}
 {{ $bye }}
 
-Signé, {{ $sign }}
+Signé, {{ $sign }} gant {{ $adj }}.

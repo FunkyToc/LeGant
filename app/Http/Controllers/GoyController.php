@@ -13,7 +13,7 @@ class GoyController extends Controller
      *
      *  (array)
      */
-    private $types = ['hello', 'text', 'bye', 'sign'];
+    private $types = ['hello', 'text', 'bye', 'sign', 'adj'];
 
     /**
      * Allowed admins
@@ -161,6 +161,7 @@ class GoyController extends Controller
         $texts['text'] = DB::select('SELECT * FROM texts WHERE type = "text" ORDER BY id DESC');
         $texts['bye'] = DB::select('SELECT * FROM texts WHERE type = "bye" ORDER BY id DESC');
         $texts['sign'] = DB::select('SELECT * FROM texts WHERE type = "sign" ORDER BY id DESC');
+        $texts['adj'] = DB::select('SELECT * FROM texts WHERE type = "adj" ORDER BY id DESC');
         
         return view('admin.texts', [
             'request' => $request,

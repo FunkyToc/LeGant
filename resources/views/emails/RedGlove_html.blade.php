@@ -23,7 +23,7 @@
             <p>{{ $text }}</p>
             <p>{{ $bye }}</p>
             <br>
-            <p>Signé, {{ $sign }}</p>
+            <p>Signé, {{ $sign }} gant {{ $adj }}.</p>
         </div>
     </body>
 

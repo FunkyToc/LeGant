@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'LaraCraft'),
+    'name' => env('APP_NAME', 'LeGantRouge'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://legantrouge.fr'),
 
     /*
     |--------------------------------------------------------------------------

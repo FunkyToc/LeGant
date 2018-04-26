@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', 'mailjet'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'in-v3.mailjet.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,13 +41,6 @@ return [
     | stay compatible with the Mailgun e-mail application by default.
     |
     */
-
-    'mailgun' => [
-        'from' => env('MAILGUN_FROM', 'theamazingredglove@gmail.com'),
-        'domain' => env('MAILGUN_DOMAIN', 'your-mailgun-domain'),
-        'secret' => env('MAILGUN_PRIVATE_KEY', 'your-mailgun-private-key'),
-        'public' => env('MAILGUN_PUBLIC_KEY', 'your-mailgun-public-key')
-    ],
 
     'port' => env('MAIL_PORT', 587),
 
@@ -63,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'theamazingredglove@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'LeGantRouge'),
     ],
 
     /*
@@ -126,5 +119,28 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+
+    'mailjet' => [
+        'key' => env('MAILJET_APIKEY'),
+        'secret' => env('MAILJET_APISECRET'),
+        'transactional' => [
+            'call' => true,
+            'options' => [
+                'url' => 'api.mailjet.com',
+                'version' => 'v3.1',
+                'call' => true,
+                'secured' => true
+            ]
+        ],
+        'common' => [
+            'call' => true,
+            'options' => [
+                'url' => 'api.mailjet.com',
+                'version' => 'v3',
+                'call' => true,
+                'secured' => true
+            ]
+        ]
+    ]
 
 ];
